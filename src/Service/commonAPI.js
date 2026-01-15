@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 
 const commonAPI = async(httpRequest, url, reqBody, reqHeader) => {
     const reqConfig = {
@@ -6,11 +6,14 @@ const commonAPI = async(httpRequest, url, reqBody, reqHeader) => {
         url,
         data: reqBody,
         headers: reqHeader
+    };
+
+    try {
+        const response = await axios(reqConfig);
+        return response;
+    } catch (error) {
+        throw error;
     }
-    return await axios(reqConfig).then(res => {
-        return res
-    }).catch(err => {
-        return err
-    })
-}
-export default commonAPI
+};
+
+export default commonAPI;
